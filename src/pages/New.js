@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import api from "../services/api";
+import api from '../services/api';
 
-import "./New.css";
+import { Form } from './NewStyles';
 
 class New extends Component {
   state = {
     image: null,
-    author: "",
-    place: "",
-    description: "",
-    hashtags: ""
+    author: '',
+    place: '',
+    description: '',
+    hashtags: '',
   };
 
   handleSubmit = async e => {
@@ -19,15 +19,15 @@ class New extends Component {
 
     const data = new FormData();
 
-    data.append("image", image);
-    data.append("author", author);
-    data.append("place", place);
-    data.append("description", description);
-    data.append("hashtags", hashtags);
+    data.append('image', image);
+    data.append('author', author);
+    data.append('place', place);
+    data.append('description', description);
+    data.append('hashtags', hashtags);
 
-    await api.post("posts", data);
+    await api.post('posts', data);
 
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   handleImageChange = e => {
@@ -41,7 +41,7 @@ class New extends Component {
   render() {
     const { author, place, description, hashtags } = this.state;
     return (
-      <form id="new-post" onSubmit={this.handleSubmit}>
+      <Form id="new-post" onSubmit={this.handleSubmit}>
         <input type="file" onChange={this.handleImageChange} />
         <input
           type="text"
@@ -72,7 +72,7 @@ class New extends Component {
           value={hashtags}
         />
         <button type="submit">Enviar</button>
-      </form>
+      </Form>
     );
   }
 }
